@@ -1,3 +1,7 @@
+// cpddemo - Coherent Point Drift Demo
+// Copyright (C) 2016 Damon kelly <damon.kelly@gmail.com>
+
+
 #include <iostream>
 #include <string>
 #include <fstream>
@@ -28,7 +32,7 @@ main (int argc, char** argv)
 
     // set data directory
     string data_dir = "/home/damon/gcubed/repos/cpdexample/data/";
-    int max_iterations = 10;
+    int max_iterations = 50;
 
     // load contour 1
     cout << "loading contour 1" << endl;

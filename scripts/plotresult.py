@@ -1,18 +1,21 @@
 # -*- coding: utf-8 -*-
 """
-Created on Mon Jul 18 20:37:47 2016
+@author: Damon Kelly
+Copyright (C) 2016 Damon kelly <damon.kelly@gmail.com>
 
-@author: damon
 """
 
 import numpy as np
 import matplotlib.pyplot as plt
 import matplotlib.animation as animation
 
-# set data directory
+# Set data directory
 data_dir = "/home/damon/gcubed/repos/cpdexample/data/"
 
-# load contour 1 and 2
+# Set max number of iterations performed by C++ code
+max_iterations = 49
+
+# Load contour 1 and 2
 c1 = np.loadtxt(data_dir + "contour1.txt")
 c2 = np.loadtxt(data_dir + "contour2.txt")
 
@@ -20,27 +23,19 @@ c2 = np.loadtxt(data_dir + "contour2.txt")
 # Setup up the figure, axis and plot elements to animate
 fig = plt.figure()
 
-# affine subplot
+# Affine subplot
 plt.subplot(121)
 plt.title("affine cpd")
 plt.gca().invert_yaxis()
 line11, = plt.plot(c1[:,0], c1[:,1], 'b+')    # fixed target
 line12, = plt.plot([], [], 'go')              # src points
 
-# nonrigid subplot
+# Nonrigid subplot
 plt.subplot(122)
 plt.title("nonrigid cpd")
 plt.gca().invert_yaxis()
 line21, = plt.plot(c1[:,0], c1[:,1], 'b+')    # fixed target
 line22, = plt.plot([], [], 'go')              # src points
-
-
-#fig, ax = plt.subplots()
-#plt.title("affine cpd")
-#plt.gca().invert_yaxis()
-#line1, = ax.plot(c1[:,0], c1[:,1], 'b+')    # fixed target
-#line2, = ax.plot([], [], 'go')              # src points
-
 
 # Initialization function plots the background of each frame
 def init():
@@ -61,7 +56,7 @@ def animate(i):
         line22.set_data(result2[:,0], result2[:,1])
     return line11, line22
         
-anim = animation.FuncAnimation(fig, animate, np.arange(0,9), init_func=init)
+anim = animation.FuncAnimation(fig, animate, np.arange(0,max_iterations), init_func=init)
 
 plt.show()
 
