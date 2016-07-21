@@ -13,7 +13,7 @@ import matplotlib.animation as animation
 data_dir = "/home/damon/gcubed/repos/cpdexample/data/"
 
 # Set max number of iterations performed by C++ code
-max_iterations = 49
+max_iterations = 40
 
 # Load contour 1 and 2
 c1 = np.loadtxt(data_dir + "contour1.txt")
@@ -60,20 +60,5 @@ anim = animation.FuncAnimation(fig, animate, np.arange(0,max_iterations), init_f
 
 plt.show()
 
-## plot contours
-#plt.figure()
-#plt.gca().invert_yaxis()
-#
-#for i in range(1,9):
-#
-#    # load result
-#    result = np.loadtxt(data_dir + "affine" + str(i) + ".txt")
-#
-#    # plot
-#    plt.clf()
-#    plt.plot(c1[:,0], c1[:,1], 'b-')
-#    plt.plot(c2[:,0], c2[:,1], 'ro')
-#    plt.plot(result[:,0], result[:,1], 'go')
-#    
-#    # pause briefly
-#    plt.pause(0.5)
+# Save as an animated gif
+#anim.save(data_dir + 'demo.gif', writer='imagemagick')
